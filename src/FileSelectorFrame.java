@@ -34,7 +34,7 @@ public class FileSelectorFrame implements ActionListener {
 		
 		for(String dir: directories) {
 			File inner_file = new File(directory + "/" + dir);
-			System.out.println(inner_file.getPath());
+
 			String[] inner_files = inner_file.list(new FilenameFilter() {
 				@Override
 				public boolean accept(File current, String name) {
