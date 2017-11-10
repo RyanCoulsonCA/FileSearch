@@ -21,6 +21,10 @@ public class FileSelectorFrame implements ActionListener {
 		int returnVal = fc.showOpenDialog(frame);
 	}
 	
+	public String getDirectory() {
+		return fc.getSelectedFile().getPath();
+	}
+	
 	private void getDirectories(String directory, String pre) {
 		File file = new File(directory);
 		
