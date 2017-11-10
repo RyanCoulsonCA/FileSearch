@@ -23,17 +23,31 @@ public class FileSelectorFrame implements ActionListener {
 	
 	private void getDirectories(String directory, String pre) {
 		File file = new File(directory);
-				
+		
 		String[] directories = file.list(new FilenameFilter() {
 			@Override
 			public boolean accept(File current, String name) {
-				return new File(current, name).isDirectory();
+				File file = new File(current, name);
+				return file.isDirectory() && !file.isHidden();
 			}
 		});
-
+		
 		for(String dir: directories) {
 			File inner_file = new File(directory + "/" + dir);
-			System.out.println(pre + inner_file.getName());
+			System.out.println(inner_file.getPath());
+			String[] inner_files = inner_file.list(new FilenameFilter() {
+				@Override
+				public boolean accept(File current, String name) {
+					File file = new File(current, name);
+					return file.isFile() && !file.isHidden();
+				}
+			});
+			
+			if(inner_files.length > 0) {
+				System.out.println(pre + inner_file.getName() + Arrays.toString(inner_files));
+			} else {
+				System.out.println(pre + inner_file.getName());
+			}
 			getDirectories(inner_file.getPath(), pre + "*");
 		}
 		
