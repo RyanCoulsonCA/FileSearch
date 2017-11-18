@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -61,11 +62,11 @@ public class GUIController {
 			}
 		});*/
 		
-		DirectoryScanner scanner = new DirectoryScanner("/Users/Ryan/Desktop/Computer Science/Programs/RecTest");
+		DirectoryScanner scanner = new DirectoryScanner("C:/Users/Ryan/Documents/RecTest");
 		ArrayList<String> files = scanner.fetchFiles("");
-		
+
 		FileSearcher search = new FileSearcher(files);
-		search.find("hello,world,this,is,a,test");
+		System.out.println(search.find("banapple"));
 	}
 
 }
