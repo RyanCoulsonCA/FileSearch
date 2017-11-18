@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -61,7 +62,10 @@ public class GUIController {
 		});*/
 		
 		DirectoryScanner scanner = new DirectoryScanner("/Users/Ryan/Desktop/Computer Science/Programs/RecTest");
-		System.out.println(scanner.fetchFiles(""));
+		ArrayList<String> files = scanner.fetchFiles("");
+		
+		FileSearcher search = new FileSearcher(files);
+		search.find("hello,world,this,is,a,test");
 	}
 
 }

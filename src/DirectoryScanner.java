@@ -35,13 +35,13 @@ public class DirectoryScanner {
 			});
 			
 			if(inner_files.length > 0) {
-				System.out.println(pre + inner_file.getName() + Arrays.toString(inner_files));
+				//System.out.println(pre + inner_file.getName() + Arrays.toString(inner_files));
 				
 				for(String file: inner_files) {
 					files.add(directory + "/" + file);
 				}
 			} else {
-				System.out.println(pre + inner_file.getName() + " [empty]");
+				//System.out.println(pre + inner_file.getName() + " [empty]");
 			}
 
 			DirectoryScanner recFolders = new DirectoryScanner(directory + "/" + dir);
