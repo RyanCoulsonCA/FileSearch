@@ -20,6 +20,7 @@ import com.sun.xml.internal.ws.org.objectweb.asm.Label;
 
 public class GUIController {
 
+	/*
 	public static void createAndShowGUI(int width, int height) {
 		
 		JFrame frame = new JFrame("File Search");
@@ -50,14 +51,17 @@ public class GUIController {
 		frame.pack();
 		frame.setVisible(true);
 
-	}
+	}*/
 	
 	public static void main(String[] args) {
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+		/*javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				createAndShowGUI(450, 150);
 			}
-		});
+		});*/
+		
+		DirectoryScanner scanner = new DirectoryScanner("/Users/Ryan/Desktop/Computer Science/Programs/RecTest");
+		System.out.println(scanner.fetchFiles(""));
 	}
 
 }

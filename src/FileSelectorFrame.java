@@ -9,16 +9,16 @@ import javax.swing.JFrame;
 
 public class FileSelectorFrame implements ActionListener {
 	
-	private JFrame frame;
+	//private JFrame frame;
 	private JFileChooser fc;
 	
-	public FileSelectorFrame(JFrame frame) {
-		this.frame = frame;
+	public FileSelectorFrame() {
+		//this.frame = frame;
 		
 		this.fc = new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		fc.addActionListener(this);
-		int returnVal = fc.showOpenDialog(frame);
+		//int returnVal = fc.showOpenDialog(frame);
 	}
 	
 	public String getDirectory() {
@@ -50,7 +50,7 @@ public class FileSelectorFrame implements ActionListener {
 			if(inner_files.length > 0) {
 				System.out.println(pre + inner_file.getName() + Arrays.toString(inner_files));
 			} else {
-				System.out.println(pre + inner_file.getName());
+				System.out.println(pre + inner_file.getName() + " [empty]");
 			}
 			getDirectories(inner_file.getPath(), pre + "*");
 		}
