@@ -35,16 +35,20 @@ public class FileSearcher {
 
 		for(String f: files) {
 			File file = new File(f);
+
 			try {
 				reader = new BufferedReader(new FileReader(file));
-				String line = reader.readLine();
+				String line = reader.readLine().toLowerCase();
 				
 				while(line != null) {
 					//Matcher m = p.matcher(line);
 					for(String term: this.terms) {
+						line = line.toLowerCase();
 						if(line.contains(term)) {
 							if(found.get(term) != null) {
-								found.get(term).add(f);
+								if(!found.get(term).contains(f)) {
+									found.get(term).add(f);
+								}
 							} else {
 								found.put(term, new ArrayList<String>());
 								found.get(term).add(f);
