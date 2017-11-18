@@ -62,11 +62,11 @@ public class GUIController {
 			}
 		});*/
 		
-		DirectoryScanner scanner = new DirectoryScanner("/Users/Ryan/Desktop/Computer Science/CSC236");
+		DirectoryScanner scanner = new DirectoryScanner("C:/Users/Ryan/Documents/RecTest");
 		ArrayList<String> files = scanner.fetchFiles("");
 
 		FileSearcher search = new FileSearcher(files);
-		System.out.println(search.find("induction,recurrence"));
+		System.out.println(search.find("ban"));
 	}
 
 }

@@ -37,8 +37,14 @@ public class FileSearcher {
 			File file = new File(f);
 
 			try {
+				String line;
 				reader = new BufferedReader(new FileReader(file));
-				String line = reader.readLine().toLowerCase();
+				
+				try {
+					line = reader.readLine().toLowerCase();
+				} catch(NullPointerException e) {
+					line = null;
+				}
 				
 				while(line != null) {
 					//Matcher m = p.matcher(line);
