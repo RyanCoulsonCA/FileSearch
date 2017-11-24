@@ -7,25 +7,24 @@ import java.util.Arrays;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-public class FileSelectorFrame implements ActionListener {
+public class FileSelectorFrame {
 	
-	//private JFrame frame;
+	private JFrame frame;
 	private JFileChooser fc;
 	
-	public FileSelectorFrame() {
-		//this.frame = frame;
+	public FileSelectorFrame(JFrame frame) {
+		this.frame = frame;
 		
 		this.fc = new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		fc.addActionListener(this);
-		//int returnVal = fc.showOpenDialog(frame);
+		fc.showOpenDialog(this.frame);
 	}
 	
 	public String getDirectory() {
 		return fc.getSelectedFile().getPath();
 	}
 	
-	private void getDirectories(String directory, String pre) {
+	/*private void getDirectories(String directory, String pre) {
 		File file = new File(directory);
 		
 		String[] directories = file.list(new FilenameFilter() {
@@ -55,13 +54,5 @@ public class FileSelectorFrame implements ActionListener {
 			getDirectories(inner_file.getPath(), pre + "*");
 		}
 		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String file = fc.getSelectedFile().getPath();
-		//System.out.println(file);
-		getDirectories(file, "");
-		
-	}
+	}*/
 }

@@ -1,28 +1,16 @@
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-
-import com.sun.xml.internal.ws.org.objectweb.asm.Label;
 
 public class GUIController {
 
-	/*
+	
 	public static void createAndShowGUI(int width, int height) {
 		
 		JFrame frame = new JFrame("File Search");
@@ -33,6 +21,14 @@ public class GUIController {
 		
 		// Initialize FileSelectorFrame
 		FileSelectorFrame folderSelector = new FileSelectorFrame(frame);
+		System.out.println(folderSelector.getDirectory());
+		
+		// Test DirectoryScanner
+		DirectoryScanner scanner = new DirectoryScanner(folderSelector.getDirectory());
+		ArrayList<String> files = scanner.fetchFiles("");
+
+		FileSearcher search = new FileSearcher(files);
+		System.out.println(search.find("ban"));
 		
 		JTextField currentDirectory = new JTextField(folderSelector.getDirectory());
 		currentDirectory.setSize(new Dimension(450, 50));
@@ -53,20 +49,14 @@ public class GUIController {
 		frame.pack();
 		frame.setVisible(true);
 
-	}*/
+	}
 	
 	public static void main(String[] args) {
-		/*javax.swing.SwingUtilities.invokeLater(new Runnable() {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				createAndShowGUI(450, 150);
 			}
-		});*/
-		
-		DirectoryScanner scanner = new DirectoryScanner("C:/Users/Ryan/Documents/RecTest");
-		ArrayList<String> files = scanner.fetchFiles("");
-
-		FileSearcher search = new FileSearcher(files);
-		System.out.println(search.find("ban"));
+		});
 	}
 
 }
