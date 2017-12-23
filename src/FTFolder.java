@@ -15,20 +15,24 @@ public class FTFolder implements FTComponent {
 	 * Recursively build up the file tree starting with the root file.
 	 */
 	public void buildTree() {
-		File[] files = file.listFiles();
-		
-		for(File f: files) {
-			if(!f.isHidden()) {	// we do not want to include hidden files or folders
-				if(f.isDirectory()) {
-					FTFolder newFolder = new FTFolder(f);
-					newFolder.buildTree();
-					components.add(newFolder);
-				} else {
-					FTFile newFile = new FTFile(f);
-					components.add(newFile);
+		if(this.file.exists()) {
+			File[] files = file.listFiles();
+			
+			for(File f: files) {
+				if(!f.isHidden()) {	// we do not want to include hidden files or folders
+					if(f.isDirectory()) {
+						FTFolder newFolder = new FTFolder(f);
+						newFolder.buildTree();
+						components.add(newFolder);
+					} else {
+						FTFile newFile = new FTFile(f);
+						components.add(newFile);
+					}
 				}
+	
 			}
-
+		} else {
+			System.out.println("ERROR: The path `"+file.getPath()+"` does not exist.");
 		}
 	}
 
