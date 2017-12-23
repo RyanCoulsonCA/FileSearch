@@ -25,11 +25,20 @@ public class FTFolder implements FTComponent {
 					components.add(newFolder);
 				} else {
 					FTFile newFile = new FTFile(f);
-					newFile.buildTree();
 					components.add(newFile);
 				}
 			}
 
+		}
+	}
+
+	/**
+	 * Recursively search through each file.
+	 */
+	@Override
+	public void search(String term) {
+		for(FTComponent f: components) {
+			f.search(term);
 		}
 	}	
 }
