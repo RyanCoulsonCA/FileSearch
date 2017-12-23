@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class FTFolder implements FTComponent {
 	private ArrayList<FTComponent> components;
@@ -43,6 +44,13 @@ public class FTFolder implements FTComponent {
 	public void search(String term) {
 		for(FTComponent f: components) {
 			f.search(term);
+		}
+	}
+
+	@Override
+	public void search(Pattern pattern) {
+		for(FTComponent f: components) {
+			f.search(pattern);
 		}
 	}	
 }
