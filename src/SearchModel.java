@@ -14,6 +14,7 @@ public class SearchModel extends Observable {
 	private void buildFileTree() {
 		System.out.println("Building file tree `"+directory.getPath()+"`...");
 		this.fileTree = new FTFolder(this.directory);
+		this.fileTree.buildTree();
 		System.out.println("Done!");
 	}
 	

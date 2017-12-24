@@ -1,4 +1,5 @@
 public interface FTComponent {
 	public void buildTree();
-	public void search(String term);
+	public SearchResults search(String term);
+	public int getFileCount();
 }

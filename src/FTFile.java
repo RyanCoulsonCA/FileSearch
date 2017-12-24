@@ -5,29 +5,38 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FTFile implements FTComponent {
+	private static int nodeCount;
 	private File file;
 	
 	public FTFile(File f) {
 		this.file = f;
+		nodeCount++;
 	}
 	
 	@Override
 	public void buildTree() {}
+	
+	@Override
+	public int getFileCount() {
+		return nodeCount;
+	}
 
 	@Override
-	public void search(String term) {
+	public SearchResults search(String term) {
+		SearchResults results = new SearchResults();
+		
 		try {
 			Pattern p = Pattern.compile(".*"+term+".*");
 			BufferedReader reader = new BufferedReader(new FileReader(this.file));
 			String line;
 			int lineNumber = 0;
 			boolean found = false;
-			
+
 			while((line = reader.readLine()) != null) {
 				line = line.toLowerCase();
 				Matcher m = p.matcher(line);
 				if(m.matches()) {
-					System.out.println("[Line "+lineNumber+"] Found instance of `"+term+"` in file `"+this.file.getName()+"`.");
+					results.addResult(this.file, "[Line "+lineNumber+"] Found instance of `"+term+"`");
 					found=true;
 				}
 				lineNumber++;
@@ -41,5 +50,7 @@ public class FTFile implements FTComponent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return results;
 	}
 }

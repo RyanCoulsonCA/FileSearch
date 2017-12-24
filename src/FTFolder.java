@@ -11,6 +11,14 @@ public class FTFolder implements FTComponent {
 		this.file = f;
 	}
 	
+	public int getFileCount() {
+		int count = 0;
+		for(FTComponent c: components) {
+			count += c.getFileCount();
+		}
+		return count;
+	}
+	
 	
 	/**
 	 * Recursively build up the file tree starting with the root file.
@@ -42,9 +50,13 @@ public class FTFolder implements FTComponent {
 	 * Recursively search through each file.
 	 */
 	@Override
-	public void search(String term) {
+	public SearchResults search(String term) {
+		SearchResults finalResults = new SearchResults();
+		
 		for(FTComponent f: components) {
-			f.search(term);
+			SearchResults results = f.search(term);
+			finalResults.addAll(results.getResults());
 		}
+		return finalResults;
 	}
 }

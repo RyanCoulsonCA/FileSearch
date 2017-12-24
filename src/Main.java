@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class Main {
 
 	public static void createAndShowGUI() { 
-		SearchModel model = new SearchModel("");
+		SearchModel model = new SearchModel("E:/Programming/Test");
 		
 		JFrame frame = new JFrame("File Search");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,33 +23,13 @@ public class Main {
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(new FlowLayout());
 		frame.getContentPane().setBackground(Color.WHITE);
+
+		model.getFileTree().search(".*hey.*");
 		
-		/* Directory Information */
-		DirectoryTextField dirPanel = new DirectoryTextField(model);
+		DirectoryTextField dirPanel = new DirectoryTextField(model, frame);
 		model.addObserver(dirPanel);
-		JButton changeDir = new JButton("Change Directory");
-		changeDir.addActionListener(new ChangeDirectoryActionListener(model, frame));
-		
 		frame.getContentPane().add(dirPanel);
-		frame.getContentPane().add(changeDir);
-		/* End Directory Information */
-		
-		/* Begin File Information */
-		
-		JPanel fileList = new JPanel();
-		fileList.setPreferredSize(new Dimension(500, 30));
-		fileList.setBackground(Color.GRAY);
-		
-		JLabel fileListTitle = new JLabel("Files");
-		fileListTitle.setPreferredSize(new Dimension(470, 18));
-		fileListTitle.setFont(new Font("DIALOG", Font.BOLD, 15));
-		fileListTitle.setForeground(Color.WHITE);
-		fileList.add(fileListTitle);
-		
-		frame.getContentPane().add(fileList);
-		
-		/* End File Information */
-		
+
 		frame.pack();
 		frame.setVisible(true);
 	}
