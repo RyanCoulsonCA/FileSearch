@@ -24,9 +24,9 @@ public class Main {
 		frame.getContentPane().setLayout(new FlowLayout());
 		frame.getContentPane().setBackground(Color.WHITE);
 
-		model.getFileTree().search(".*hey.*");
+		model.search(".*hey.*");
 		
-		DirectoryTextField dirPanel = new DirectoryTextField(model, frame);
+		ContentPanel dirPanel = new ContentPanel(model, frame);
 		model.addObserver(dirPanel);
 		frame.getContentPane().add(dirPanel);
 

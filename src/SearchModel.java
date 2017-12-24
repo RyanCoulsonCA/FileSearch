@@ -5,6 +5,7 @@ import java.util.Observer;
 public class SearchModel extends Observable {
 	private File directory;
 	private FTFolder fileTree;
+	private SearchResults results;
 
 	public SearchModel(String file) {
 		this.directory = new File(file);
@@ -31,5 +32,21 @@ public class SearchModel extends Observable {
 	
 	public FTFolder getFileTree() {
 		return this.fileTree;
+	}
+	
+	public void search(String search) {
+		this.results = this.fileTree.search(search);
+		System.out.println("Search complete");
+	}
+	
+	public SearchResults getResults() {
+		return this.results;
+	}
+	
+	@Override
+	public synchronized void addObserver(Observer o) {
+		 super.addObserver(o);
+		 this.setChanged();
+		 this.notifyObservers();
 	}
 }

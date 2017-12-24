@@ -2,22 +2,21 @@ import java.io.File;
 import java.util.HashMap;
 
 public class SearchResults {
-	private HashMap<File, String> results;
+	private HashMap<String, File> results;
 	
 	public SearchResults() {
-		this.results = new HashMap<File, String>();
+		this.results = new HashMap<String, File>();
 	}
 	
 	public void addResult(File f, String info) {
-		System.out.println("added " + f.getName() + ": " + info);
-		results.put(f, info);
+		results.put(info, f);
 	}
 	
-	public void addAll(HashMap<File, String> result) {
+	public void addAll(HashMap<String, File> result) {
 		results.putAll(result);
 	}
 	
-	public HashMap<File, String> getResults() {
+	public HashMap<String, File> getResults() {
 		return results;
 	}
 	

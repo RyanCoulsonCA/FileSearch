@@ -2,6 +2,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class DirectoryTextField extends JPanel implements Observer {
+public class ContentPanel extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 	private SearchModel model;
 	private JFrame frame;
@@ -22,7 +25,7 @@ public class DirectoryTextField extends JPanel implements Observer {
 	private JPanel fileHeaderBlock, filePanel;
 	private JScrollPane fileScrollPane;
 	
-	public DirectoryTextField(SearchModel model, JFrame frame) {
+	public ContentPanel(SearchModel model, JFrame frame) {
 		this.model = model;
 		this.frame = frame;
 		this.setPreferredSize(new Dimension(500, 300));
@@ -52,7 +55,6 @@ public class DirectoryTextField extends JPanel implements Observer {
 		/* End File Header */
 		
 		filePanel = new JPanel();
-		filePanel.setPreferredSize(new Dimension(500, 100));
 		filePanel.setBackground(Color.WHITE);
 		
 		fileCount = new JLabel("File count: " + model.getFileTree().getFileCount());
@@ -81,5 +83,17 @@ public class DirectoryTextField extends JPanel implements Observer {
 	public void update(Observable o, Object arg) {
 		directoryTextField.setText(model.getCurrentDirectory());
 		fileCount.setText("File count: " + model.getFileTree().getFileCount());
+		
+		HashMap<String, File> results = model.getResults().getResults();
+		filePanel.setPreferredSize(new Dimension(500, results.size() * 21));
+		
+		for(Map.Entry<String, File> map: results.entrySet()) {
+			File file = map.getValue();
+			String info = map.getKey();
+			
+			JLabel fileLabel = new JLabel(info); 
+			fileLabel.setPreferredSize(new Dimension(470, 15));
+			filePanel.add(fileLabel);
+		}
 	}
 }
