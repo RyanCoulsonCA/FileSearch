@@ -11,10 +11,11 @@ public class FTFolder implements FTComponent {
 		this.file = f;
 	}
 	
-	@Override
+	
 	/**
 	 * Recursively build up the file tree starting with the root file.
 	 */
+	@Override
 	public void buildTree() {
 		if(this.file.exists()) {
 			File[] files = file.listFiles();
