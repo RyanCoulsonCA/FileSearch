@@ -4,9 +4,17 @@ import java.util.Observer;
 
 public class SearchModel extends Observable {
 	private File directory;
+	private FTFolder fileTree;
 
 	public SearchModel(String file) {
 		this.directory = new File(file);
+		this.buildFileTree();
+	}
+	
+	private void buildFileTree() {
+		System.out.println("Building file tree `"+directory.getPath()+"`...");
+		this.fileTree = new FTFolder(this.directory);
+		System.out.println("Done!");
 	}
 	
 	public String getCurrentDirectory() {
@@ -14,15 +22,13 @@ public class SearchModel extends Observable {
 	}
 	
 	public void setCurrentDirectory(File file) {
-		this.directory = file;
+		this.directory = file;	
+		this.buildFileTree();
 		this.setChanged();
 		this.notifyObservers();
 	}
 	
-	@Override
-	public synchronized void addObserver(Observer o) {
-		super.addObserver(o);
-		this.setChanged();
-		this.notifyObservers();
+	public FTFolder getFileTree() {
+		return this.fileTree;
 	}
 }

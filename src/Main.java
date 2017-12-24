@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.File;
 
@@ -11,15 +12,16 @@ import javax.swing.JTextField;
 public class Main {
 
 	public static void createAndShowGUI() { 
-		SearchModel model = new SearchModel("E:/");
+		SearchModel model = new SearchModel("");
 		
 		JFrame frame = new JFrame("File Search");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(500, 300));
-		frame.getContentPane().setLayout(new GridLayout(3, 2));
+		frame.setResizable(false);
+		frame.getContentPane().setLayout(new FlowLayout());
 		frame.getContentPane().setBackground(Color.WHITE);
 			
-		DirectoryPanel dirPanel = new DirectoryPanel(model);
+		DirectoryTextField dirPanel = new DirectoryTextField(model);
 		model.addObserver(dirPanel);
 		frame.getContentPane().add(dirPanel);
 		
