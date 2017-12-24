@@ -21,7 +21,7 @@ public class ContentPanel extends JPanel implements Observer {
 	private JFrame frame;
 	private JTextField directoryTextField;
 	private JButton changeDir;
-	private JLabel fileListTitle, fileCount, foundFilesLabel;
+	private JLabel fileListTitle, fileCount, foundFilesLabel, fileLabel;
 	private JPanel fileHeaderBlock, filePanel;
 	private JScrollPane fileScrollPane;
 	
@@ -83,17 +83,32 @@ public class ContentPanel extends JPanel implements Observer {
 	public void update(Observable o, Object arg) {
 		directoryTextField.setText(model.getCurrentDirectory());
 		fileCount.setText("File count: " + model.getFileTree().getFileCount());
+
+		model.search(".*hey.*");	
 		
-		HashMap<String, File> results = model.getResults().getResults();
-		filePanel.setPreferredSize(new Dimension(500, results.size() * 21));
+		SearchResults results = model.getResults();
+		filePanel.setPreferredSize(new Dimension(500, results.getSize() * 21));
 		
-		for(Map.Entry<String, File> map: results.entrySet()) {
-			File file = map.getValue();
-			String info = map.getKey();
-			
-			JLabel fileLabel = new JLabel(info); 
+		filePanel.removeAll();
+		fileScrollPane.revalidate();
+		fileScrollPane.repaint();
+		
+		if(results.getSize() == 0) {
+			fileLabel = new JLabel("No files found."); 
 			fileLabel.setPreferredSize(new Dimension(470, 15));
+			fileLabel.setForeground(Color.RED);
 			filePanel.add(fileLabel);
+		} else {
+			for(Map.Entry<String, File> map: results.getResults().entrySet()) {
+				
+				File file = map.getValue();
+				String info = map.getKey();
+					
+				fileLabel = new JLabel(file.getName()+": "+info); 
+				fileLabel.setPreferredSize(new Dimension(470, 15));
+	
+				filePanel.add(fileLabel);
+			}
 		}
 	}
 }

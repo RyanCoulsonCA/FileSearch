@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class Main {
 
 	public static void createAndShowGUI() { 
-		SearchModel model = new SearchModel("E:/Programming/Test");
+		SearchModel model = new SearchModel("");
 		
 		JFrame frame = new JFrame("File Search");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +24,6 @@ public class Main {
 		frame.getContentPane().setLayout(new FlowLayout());
 		frame.getContentPane().setBackground(Color.WHITE);
 
-		model.search(".*hey.*");
 		
 		ContentPanel dirPanel = new ContentPanel(model, frame);
 		model.addObserver(dirPanel);

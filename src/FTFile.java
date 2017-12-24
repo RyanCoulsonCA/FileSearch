@@ -5,12 +5,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FTFile implements FTComponent {
-	private static int nodeCount;
 	private File file;
 	
 	public FTFile(File f) {
 		this.file = f;
-		nodeCount++;
 	}
 	
 	@Override
@@ -18,7 +16,7 @@ public class FTFile implements FTComponent {
 	
 	@Override
 	public int getFileCount() {
-		return nodeCount;
+		return 0;
 	}
 
 	@Override

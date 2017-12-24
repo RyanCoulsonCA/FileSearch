@@ -14,6 +14,7 @@ public class SearchModel extends Observable {
 	
 	private void buildFileTree() {
 		System.out.println("Building file tree `"+directory.getPath()+"`...");
+		this.results = new SearchResults();
 		this.fileTree = new FTFolder(this.directory);
 		this.fileTree.buildTree();
 		System.out.println("Done!");
@@ -42,6 +43,7 @@ public class SearchModel extends Observable {
 	public SearchResults getResults() {
 		return this.results;
 	}
+
 	
 	@Override
 	public synchronized void addObserver(Observer o) {
