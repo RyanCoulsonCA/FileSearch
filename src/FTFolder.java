@@ -46,11 +46,4 @@ public class FTFolder implements FTComponent {
 			f.search(term);
 		}
 	}
-
-	@Override
-	public void search(Pattern pattern) {
-		for(FTComponent f: components) {
-			f.search(pattern);
-		}
-	}	
 }
