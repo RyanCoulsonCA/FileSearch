@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneLayout;
 
 public class ContentPanel extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
@@ -89,7 +91,7 @@ public class ContentPanel extends JPanel implements Observer {
 		fileCount.setText("File count: " + model.getFileTree().getFileCount());
 
 		SearchResults results = model.getResults();
-		filePanel.setPreferredSize(new Dimension(500, results.getSize() * 21));
+		int panelHeight = 0;
 		
 		filePanel.removeAll();
 		fileScrollPane.revalidate();
@@ -100,8 +102,10 @@ public class ContentPanel extends JPanel implements Observer {
 			fileLabel.setPreferredSize(new Dimension(470, 15));
 			fileLabel.setForeground(Color.RED);
 			filePanel.add(fileLabel);
+			panelHeight += 20;
 		} else {
 			ArrayList<String> shownFiles = new ArrayList<String>();
+			boolean color = false;
 			
 			for(Map.Entry<String, File> map: results.getResults().entrySet()) {
 				
@@ -110,19 +114,38 @@ public class ContentPanel extends JPanel implements Observer {
 				
 				if(!settings.getIsDetailed()) {
 					if(!shownFiles.contains(file.getName())) {
+						JPanel fileBox = new JPanel();
+						fileBox.setPreferredSize(new Dimension(500, 35));
+						fileBox.setLayout(new FlowLayout());
+						
+						if(color) {
+							fileBox.setBackground(Color.WHITE);
+						}
+
+						color = !color;
+						
 						fileLabel = new JLabel("Found in " + file.getName()); 
-						fileLabel.setPreferredSize(new Dimension(470, 15));
-			
-						filePanel.add(fileLabel);
+						fileLabel.setPreferredSize(new Dimension(300, 20));
+						fileBox.add(fileLabel);
+						
+						JButton openFile = new JButton("Open");
+						openFile.addActionListener(new OpenFileActionListener(file));
+						fileBox.add(openFile);
+						
+						filePanel.add(fileBox);
 						shownFiles.add(file.getName());
+						panelHeight += 40;
 					}
 				} else {
 					fileLabel = new JLabel(file.getName()+": "+info); 
 					fileLabel.setPreferredSize(new Dimension(470, 15));
 		
 					filePanel.add(fileLabel);
+					panelHeight += 20;
 				}
 			}
 		}
+		
+		filePanel.setPreferredSize(new Dimension(500, panelHeight));
 	}
 }

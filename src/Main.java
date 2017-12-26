@@ -23,6 +23,7 @@ public class Main {
 		frame.getContentPane().add(dirPanel);
 
 		frame.pack();
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 	
