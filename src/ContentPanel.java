@@ -28,7 +28,7 @@ public class ContentPanel extends JPanel implements Observer {
 	
 	public ContentPanel(SearchModel model, JFrame frame) {
 		this.model = model;
-		this.setPreferredSize(new Dimension(500, 300));
+		this.setPreferredSize(new Dimension(500, 400));
 		this.setLayout(new FlowLayout());
 		this.setBackground(Color.WHITE);
 		
