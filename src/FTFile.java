@@ -16,7 +16,7 @@ public class FTFile implements FTComponent {
 	
 	@Override
 	public int getFileCount() {
-		return 0;
+		return 1;
 	}
 
 	@Override
