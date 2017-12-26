@@ -4,11 +4,13 @@ public final class Settings {
 	private String search;
 	private boolean exactString;
 	private boolean isRegex;
+	private boolean showDetailedResults;
 	
 	private Settings() {
 		this.search = "";
 		this.exactString = false;
 		this.isRegex = false;
+		this.showDetailedResults = false;
 	}
 	
 	public void setSearchString(String s) {
@@ -43,6 +45,14 @@ public final class Settings {
 	
 	public boolean getIsRegex() {
 		return this.isRegex;
+	}
+	
+	public boolean getIsDetailed() {
+		return this.showDetailedResults;
+	}
+	
+	public void setIsDetailed(boolean detailed) {
+		this.showDetailedResults = detailed;
 	}
 	
 	public static Settings getInstance() {

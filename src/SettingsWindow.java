@@ -18,15 +18,15 @@ public class SettingsWindow extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Settings settings = Settings.getInstance();
-	private JLabel searchString, exactString, isRegex;
+	private JLabel searchString, exactString, isRegex, detailedString;
 	private JTextField search;
-	private JCheckBox setExact, setRegex;
-	private JPanel exact, regex;
+	private JCheckBox setExact, setRegex, setDetailed;
+	private JPanel exact, regex, detailed;
 	
 	public SettingsWindow(JFrame frame) {	
 		this.setTitle("File Search Settings");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setPreferredSize(new Dimension(400, 170));
+		this.setPreferredSize(new Dimension(400, 190));
 		this.setResizable(false);
 		this.setLayout(new FlowLayout());
 		this.setFont(new Font("DIALOG", Font.BOLD, 13));
@@ -57,12 +57,25 @@ public class SettingsWindow extends JFrame implements ActionListener {
 		regex.add(setRegex);
 		regex.add(isRegex);
 		
+		detailed = new JPanel();
+		detailed.setPreferredSize(new Dimension(400, 25));
+		
+		setDetailed = new JCheckBox();
+		detailedString = new JLabel("Show detailed results  ");
+		
+		detailed.add(setDetailed);
+		detailed.add(detailedString);
+		
 		if(settings.getExactString()) {
 			setExact.setSelected(true);
 		}
 		
 		if(settings.getIsRegex()) {
 			setRegex.setSelected(true);
+		}
+		
+		if(settings.getIsDetailed()) {
+			setDetailed.setSelected(true);
 		}
 		
 		JButton close = new JButton("Exit");
@@ -75,6 +88,7 @@ public class SettingsWindow extends JFrame implements ActionListener {
 		this.getContentPane().add(search);
 		this.getContentPane().add(exact);
 		this.getContentPane().add(regex);
+		this.getContentPane().add(detailed);
 		this.getContentPane().add(close);
 		this.getContentPane().add(save);
 		
@@ -91,9 +105,11 @@ public class SettingsWindow extends JFrame implements ActionListener {
 			if(search.getText().isEmpty()) {
 				JOptionPane.showMessageDialog(this, "You must enter a search!", "Error", JOptionPane.WARNING_MESSAGE);
 			} else {
-				settings.setExactString(setExact.isSelected());
 				settings.setSearchString(search.getText());
+				
+				settings.setExactString(setExact.isSelected());
 				settings.setIsRegex(setRegex.isSelected());
+				settings.setIsDetailed(setDetailed.isSelected());
 				JOptionPane.showMessageDialog(this, "Settings Saved!");
 				this.dispose();
 			}

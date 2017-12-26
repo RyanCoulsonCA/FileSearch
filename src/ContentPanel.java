@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -23,12 +24,15 @@ public class ContentPanel extends JPanel implements Observer {
 	private JPanel fileHeaderBlock, filePanel;
 	private JScrollPane fileScrollPane;
 	private SearchButtons extraButtons;
+	private Settings settings;
 	
 	public ContentPanel(SearchModel model, JFrame frame) {
 		this.model = model;
 		this.setPreferredSize(new Dimension(500, 300));
 		this.setLayout(new FlowLayout());
 		this.setBackground(Color.WHITE);
+		
+		this.settings = Settings.getInstance();
 		
 		directoryTextField = new JTextField("Select directory to search from");
 		directoryTextField.setEditable(false);
@@ -97,15 +101,27 @@ public class ContentPanel extends JPanel implements Observer {
 			fileLabel.setForeground(Color.RED);
 			filePanel.add(fileLabel);
 		} else {
+			ArrayList<String> shownFiles = new ArrayList<String>();
+			
 			for(Map.Entry<String, File> map: results.getResults().entrySet()) {
 				
 				File file = map.getValue();
 				String info = map.getKey();
-					
-				fileLabel = new JLabel(file.getName()+": "+info); 
-				fileLabel.setPreferredSize(new Dimension(470, 15));
-	
-				filePanel.add(fileLabel);
+				
+				if(!settings.getIsDetailed()) {
+					if(!shownFiles.contains(file.getName())) {
+						fileLabel = new JLabel("Found in " + file.getName()); 
+						fileLabel.setPreferredSize(new Dimension(470, 15));
+			
+						filePanel.add(fileLabel);
+						shownFiles.add(file.getName());
+					}
+				} else {
+					fileLabel = new JLabel(file.getName()+": "+info); 
+					fileLabel.setPreferredSize(new Dimension(470, 15));
+		
+					filePanel.add(fileLabel);
+				}
 			}
 		}
 	}
