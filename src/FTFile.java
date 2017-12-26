@@ -28,22 +28,16 @@ public class FTFile implements FTComponent {
 			BufferedReader reader = new BufferedReader(new FileReader(this.file));
 			String line;
 			int lineNumber = 0;
-			boolean found = false;
 
 			while((line = reader.readLine()) != null) {
 				line = line.toLowerCase();
 				Matcher m = p.matcher(line);
 				if(m.matches()) {
 					results.addResult(this.file, "[Line "+lineNumber+"] Found instance of `"+m.group(0)+"`");
-					found=true;
 				}
 				lineNumber++;
 			}
 			reader.close();
-			
-			if(!found) {
-				System.out.println("Did not find `"+term+"` in file `"+this.file.getName()+"`.");
-			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

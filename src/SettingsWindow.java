@@ -17,16 +17,13 @@ public class SettingsWindow extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JFrame frame;
 	private Settings settings = Settings.getInstance();
 	private JLabel searchString, exactString, isRegex;
 	private JTextField search;
 	private JCheckBox setExact, setRegex;
 	private JPanel exact, regex;
 	
-	public SettingsWindow(JFrame frame) {
-		this.frame = frame;
-		
+	public SettingsWindow(JFrame frame) {	
 		this.setTitle("File Search Settings");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setPreferredSize(new Dimension(400, 170));

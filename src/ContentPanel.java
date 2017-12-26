@@ -3,7 +3,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -18,7 +17,6 @@ import javax.swing.JTextField;
 public class ContentPanel extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 	private SearchModel model;
-	private JFrame frame;
 	private JTextField directoryTextField;
 	private JButton changeDir;
 	private JLabel fileListTitle, fileCount, foundFilesLabel, fileLabel;
@@ -28,7 +26,6 @@ public class ContentPanel extends JPanel implements Observer {
 	
 	public ContentPanel(SearchModel model, JFrame frame) {
 		this.model = model;
-		this.frame = frame;
 		this.setPreferredSize(new Dimension(500, 300));
 		this.setLayout(new FlowLayout());
 		this.setBackground(Color.WHITE);

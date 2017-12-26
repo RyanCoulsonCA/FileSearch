@@ -39,6 +39,7 @@ public class SearchButtons extends JPanel implements ActionListener {
 		this.add(searchButton);
 	}
 	
+	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "Settings") {

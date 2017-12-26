@@ -1,6 +1,5 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class FTFolder implements FTComponent {
 	private ArrayList<FTComponent> components;
@@ -41,8 +40,6 @@ public class FTFolder implements FTComponent {
 				}
 	
 			}
-		} else {
-			System.out.println("ERROR: The path `"+file.getPath()+"` does not exist.");
 		}
 	}
 
