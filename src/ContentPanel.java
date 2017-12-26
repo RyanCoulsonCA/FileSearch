@@ -69,7 +69,7 @@ public class ContentPanel extends JPanel implements Observer {
 		
 		fileScrollPane = new JScrollPane(filePanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		fileScrollPane.setPreferredSize(new Dimension(480, 150));
-		fileScrollPane.setBackground(Color.RED);
+		fileScrollPane.setBackground(Color.WHITE);
 		
 		extraButtons = new SearchButtons(model, frame);
 		
