@@ -19,7 +19,7 @@ public class Main {
 		
 		JFrame frame = new JFrame("File Search");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(500, 300));
+		frame.setPreferredSize(new Dimension(500, 340));
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(new FlowLayout());
 		frame.getContentPane().setBackground(Color.WHITE);

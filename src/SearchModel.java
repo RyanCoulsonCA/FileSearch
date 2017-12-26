@@ -37,7 +37,8 @@ public class SearchModel extends Observable {
 	
 	public void search(String search) {
 		this.results = this.fileTree.search(search);
-		System.out.println("Search complete");
+		this.setChanged();
+		this.notifyObservers();
 	}
 	
 	public SearchResults getResults() {

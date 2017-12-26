@@ -34,7 +34,7 @@ public class FTFile implements FTComponent {
 				line = line.toLowerCase();
 				Matcher m = p.matcher(line);
 				if(m.matches()) {
-					results.addResult(this.file, "[Line "+lineNumber+"] Found instance of `"+term+"`");
+					results.addResult(this.file, "[Line "+lineNumber+"] Found instance of `"+m.group(0)+"`");
 					found=true;
 				}
 				lineNumber++;

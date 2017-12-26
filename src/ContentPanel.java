@@ -24,6 +24,7 @@ public class ContentPanel extends JPanel implements Observer {
 	private JLabel fileListTitle, fileCount, foundFilesLabel, fileLabel;
 	private JPanel fileHeaderBlock, filePanel;
 	private JScrollPane fileScrollPane;
+	private SearchButtons extraButtons;
 	
 	public ContentPanel(SearchModel model, JFrame frame) {
 		this.model = model;
@@ -69,6 +70,7 @@ public class ContentPanel extends JPanel implements Observer {
 		fileScrollPane.setPreferredSize(new Dimension(480, 150));
 		fileScrollPane.setBackground(Color.RED);
 		
+		extraButtons = new SearchButtons(model, frame);
 		
 		this.add(directoryTextField);
 		this.add(changeDir);
@@ -76,6 +78,7 @@ public class ContentPanel extends JPanel implements Observer {
 		this.add(fileCount);
 		this.add(foundFilesLabel);
 		this.add(fileScrollPane);
+		this.add(extraButtons);
 
 	}
 
@@ -84,8 +87,6 @@ public class ContentPanel extends JPanel implements Observer {
 		directoryTextField.setText(model.getCurrentDirectory());
 		fileCount.setText("File count: " + model.getFileTree().getFileCount());
 
-		model.search(".*hey.*");	
-		
 		SearchResults results = model.getResults();
 		filePanel.setPreferredSize(new Dimension(500, results.getSize() * 21));
 		
